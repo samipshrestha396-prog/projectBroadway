@@ -1,4 +1,3 @@
-
 const products = [
   {
     name: "Wireless Bluetooth Headphones",
@@ -42,11 +41,12 @@ const products = [
     image: "/images/watch.jpg",
     rating: 4.3,
     num_reviews: 20,
-    count_in_stock: 14,
+    count_in_stock: 0,
   },
   {
     name: "Running Shoes",
-    description: "Lightweight running shoes for men.",
+    description:
+      "Lightweight running shoes for men.These stylish and comfortable shoes are designed for everyday wear. With breathable material, a soft cushioned insole, and a durable sole, they provide all-day comfort and reliable support wherever you go.",
     price: 75.5,
     category: "Footwear",
     brand: "RunFast",
@@ -101,7 +101,7 @@ const products = [
   },
   {
     name: "Office Chair",
-    description: "Ergonomic office chair with lumbar support.",
+    description: "Ergonomic office chair with lumbar support.This ergonomic office chair is designed for maximum comfort and productivity. With a cushioned seat, adjustable height, and sturdy build, it provides excellent support for long working hours while adding a modern touch to your workspace.",
     price: 150.0,
     category: "Furniture",
     brand: "ComfortSeat",
@@ -119,7 +119,7 @@ const products = [
     image: "/images/bottle.jpg",
     rating: 4.2,
     num_reviews: 4,
-    count_in_stock: 60,
+    count_in_stock: 0,
   },
   {
     name: "Sunglasses",
@@ -131,7 +131,7 @@ const products = [
     rating: 4.1,
     num_reviews: 3,
     count_in_stock: 0,
-  }
+  },
 ];
 
 export default products;
