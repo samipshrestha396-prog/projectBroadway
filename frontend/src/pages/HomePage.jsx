@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import { Row, Col } from "react-bootstrap";
 import { useGetProductsQuery } from "../slices/productApiSlice";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 function HomePage() {
   //................................. calling api usinng fetch.............................
   // useEffect(()=>{
@@ -26,11 +28,11 @@ function HomePage() {
 
   return (
     <>
-      <h1>Latest Products...</h1>
+      <h2>Latest Products</h2>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader/>
       ) : error ? (
-        <h2>{error?.data?.message || error?.error}</h2>
+        <Message type="danger">{error?.data?.message || error?.error}</Message>
       ) : (
         <Row>
           { products.map((product) => (

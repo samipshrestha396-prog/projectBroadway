@@ -14,23 +14,28 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = action.payload;
       const exists = state.cartItems.find((x) => x._id === item._id);
+
       if (exists) {
         state.cartItems = state.cartItems.map((x) =>
           x._id === exists._id ? item : x,
         );
       } else {
         state.cartItems.push({ ...item });
-        cartUpdate(state);
       }
-      removeFromCart: (state, action) => {
-        const id = action.payload;
-        state.cartItems = state.cartItems.filter((item) => item._id != id);
-      };
-      cartUpdate(state);
 
-      clearCart: (state, action) => {
-        state.cartItems = [];
-      };
+      cartUpdate(state);
+    },
+
+    removeFromCart: (state, action) => {
+      const id = action.payload;
+
+      state.cartItems = state.cartItems.filter((item) => item._id !== id);
+
+      cartUpdate(state);
+    },
+
+    clearCart: (state) => {
+      state.cartItems = [];
       cartUpdate(state);
     },
   },

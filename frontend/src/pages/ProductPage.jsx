@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams ,useNavigate} from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -9,6 +9,8 @@ import { Badge, Button } from "react-bootstrap";
 import { useGetProductsByIdQuery } from "../slices/productApiSlice";
 import { addToCart } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 function ProductPage() {
   // const [product, setProduct] = useState({});
@@ -22,9 +24,11 @@ function ProductPage() {
   // }, []);
 
   const { data: product, isLoading, error } = useGetProductsByIdQuery(id);
+  const navigate =useNavigate();
   const dispatch = useDispatch();
   function addToCartHandler() {
     dispatch(addToCart({ ...product, qty }));
+    navigate("/cart")
   }
   return (
     <>
@@ -32,9 +36,9 @@ function ProductPage() {
         Go Back
       </Link>
       {isLoading ? (
-        <h2>Loading..</h2>
+        <Loader/>
       ) : error ? (
-        <h2>{error?.data?.message || error?.error}</h2>
+        <Message type="danger" >{error?.data?.message || error?.error}</Message>
       ) : (
         <Row className="my-2 mx-3">
           <Col md={6}>
