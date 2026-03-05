@@ -13,9 +13,10 @@ import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart,clearCart } from "../slices/cartSlice";
-
+import { addToCart, removeFromCart, clearCart } from "../slices/cartSlice";
+import { useNavigate } from "react-router";
 function CartPage() {
+  const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const updateHandler = (item, qty) => {
@@ -25,9 +26,9 @@ function CartPage() {
     dispatch(removeFromCart(id));
   };
 
-const clearCartHandler=()=>{
-    dispatch(clearCart())
-}
+  const clearCartHandler = () => {
+    dispatch(clearCart());
+  };
   return (
     <>
       <Row className=" my-4 mx-1 shadow-lg bg-muted">
@@ -76,15 +77,24 @@ const clearCartHandler=()=>{
                 </ListGroup.Item>
               ))}
               <ListGroup.Item>
-                 <Button variant="danger" className="my-2" onClick={()=> clearCartHandler()}>Clear Cart</Button>
+                <Button
+                  variant="danger"
+                  className="my-2"
+                  onClick={() => clearCartHandler()}
+                >
+                  Clear Cart
+                </Button>
               </ListGroup.Item>
             </ListGroup>
           )}
         </Col>
-       
 
         <Col md={4}>
-          <Card sm={4} style={{width:"20rem",position:"sticky",top:"0px"}} className="shadow-lg my-5 m-auto">
+          <Card
+            sm={4}
+            style={{ width: "20rem", position: "sticky", top: "0px" }}
+            className="shadow-lg my-5 m-auto"
+          >
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h5>
@@ -93,7 +103,7 @@ const clearCartHandler=()=>{
                 </h5>
               </ListGroup.Item>
 
-              <ListGroup.Item >
+              <ListGroup.Item>
                 <h6>
                   Total Price: $
                   {cartItems
@@ -104,7 +114,13 @@ const clearCartHandler=()=>{
             </ListGroup>
 
             <ListGroup.Item>
-              <Button variant="success" size="sm" disabled={cartItems.length == 0} style={{width:"20rem"}}>
+              <Button
+                variant="success"
+                size="sm"
+                disabled={cartItems.length == 0}
+                style={{ width: "20rem" }}
+                onClick={() => navigate("/signin?redirect=/shipping")}
+              >
                 Proceed to Checkout
               </Button>
             </ListGroup.Item>
