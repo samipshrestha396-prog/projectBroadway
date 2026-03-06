@@ -1,7 +1,10 @@
 const products = [
   {
     name: "Wireless Bluetooth Headphones",
-    description: "Noise cancelling over-ear headphones.",
+    description: `Wireless Bluetooth headphones let you listen to music
+     and take calls without wires. They connect easily to phones
+      or laptops and are comfortable for everyday use with good sound
+       and long battery life.`,
     price: 89.99,
     category: "Electronics",
     brand: "SoundMax",
@@ -12,7 +15,8 @@ const products = [
   },
   {
     name: "Gaming Mouse",
-    description: "RGB wired gaming mouse with high precision.",
+    description:
+      "RGB wired gaming mouse with high precision.It offers smooth movement, fast response time, and comfortable handling for long gaming sessions. Many gaming mice also include extra buttons and adjustable sensitivity to improve performance and make gameplay easier.",
     price: 29.99,
     category: "Electronics",
     brand: "HyperClick",
@@ -23,7 +27,8 @@ const products = [
   },
   {
     name: "Mechanical Keyboard",
-    description: "Blue switch mechanical keyboard.",
+    description:
+      "Blue switch mechanical keyboard is designed to provide a faster and more responsive typing and gaming experience. It uses mechanical switches that give better feedback, durability, and accuracy. These keyboards are comfortable for long typing or gaming sessions and are known for their strong build and satisfying key feel.",
     price: 59.99,
     category: "Electronics",
     brand: "KeyPro",
@@ -34,7 +39,8 @@ const products = [
   },
   {
     name: "Smart Watch",
-    description: "Fitness tracking smart watch.",
+    description:
+      "A wearable device that connects to your smartphone and helps you stay updated throughout the day. It can track time, fitness activities, notifications, and health data like steps and heart rate. Smartwatches are designed to be stylish, convenient, and useful for daily life.",
     price: 120.0,
     category: "Wearables",
     brand: "FitTime",
@@ -57,18 +63,20 @@ const products = [
   },
   {
     name: "Leather Backpack",
-    description: "Stylish leather backpack for travel.",
+    description:
+      "A leather backpack is a stylish and durable bag designed for carrying everyday items comfortably. It offers enough space for essentials like books, laptops, and personal belongings while maintaining a classic and professional look. The strong material and practical design make it suitable for daily use, travel, or work.",
     price: 65.0,
     category: "Accessories",
     brand: "UrbanBag",
     image: "/images/backpack.jpg",
     rating: 4.4,
     num_reviews: 6,
-    count_in_stock: 22,
+    count_in_stock: 0,
   },
   {
     name: "Bluetooth Speaker",
-    description: "Portable waterproof speaker.",
+    description:
+      "A portable audio device that connects wirelessly to smartphones, tablets, or laptops. It delivers clear sound and allows you to enjoy music anywhere without using cables. Its compact design and rechargeable battery make it perfect for travel, outdoor activities, or everyday use.",
     price: 49.99,
     category: "Electronics",
     brand: "BoomBox",
@@ -79,7 +87,7 @@ const products = [
   },
   {
     name: "Iphone",
-    description: "Strong privacy and security features.",
+    description:"A sleek and powerful smartphone that combines style, performance, and ease of use. It lets you make calls, browse the internet, take photos, and run apps smoothly. With a high-quality display, advanced camera, and reliable operating system, it’s ideal for everyday communication, entertainment, and productivity.",
     price: 34.99,
     category: "Electronics",
     brand: "DeskPro",
@@ -90,7 +98,7 @@ const products = [
   },
   {
     name: "USB-C Charger",
-    description: "Fast charging 65W USB-C adapter.",
+    description:"a convenient device used to charge smartphones, tablets, and other electronic gadgets. It provides fast and reliable power, is easy to carry, and works with most USB-compatible devices, making it ideal for home, travel, or everyday use.",
     price: 25.0,
     category: "Electronics",
     brand: "ChargeIt",
@@ -101,7 +109,8 @@ const products = [
   },
   {
     name: "Office Chair",
-    description: "Ergonomic office chair with lumbar support.This ergonomic office chair is designed for maximum comfort and productivity. With a cushioned seat, adjustable height, and sturdy build, it provides excellent support for long working hours while adding a modern touch to your workspace.",
+    description:
+      "Ergonomic office chair with lumbar support.This ergonomic office chair is designed for maximum comfort and productivity. With a cushioned seat, adjustable height, and sturdy build, it provides excellent support for long working hours while adding a modern touch to your workspace.",
     price: 150.0,
     category: "Furniture",
     brand: "ComfortSeat",
@@ -112,7 +121,8 @@ const products = [
   },
   {
     name: "Water Bottle",
-    description: "Stainless steel insulated water bottle.",
+    description:
+      "A handy and reusable container for carrying water or other drinks. It keeps you hydrated on the go, is easy to carry, and comes in durable and portable designs suitable for daily use, travel, or workouts.",
     price: 19.99,
     category: "Accessories",
     brand: "HydroPlus",
@@ -123,14 +133,15 @@ const products = [
   },
   {
     name: "Sunglasses",
-    description: "UV protection stylish sunglasses.",
+    description:
+      "Stylish eyewear designed to protect your eyes from the sun’s harmful rays. They reduce glare, enhance vision in bright conditions, and add a fashionable touch to your look, making them perfect for daily wear and outdoor activities.",
     price: 22.5,
     category: "Fashion",
     brand: "SunStyle",
     image: "/images/sunglasses.jpg",
     rating: 4.1,
     num_reviews: 3,
-    count_in_stock: 0,
+    count_in_stock: 7,
   },
 ];
 
