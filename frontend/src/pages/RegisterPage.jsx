@@ -60,7 +60,7 @@ function RegisterPage() {
           />
         </Form.Group>
         <Button type="submit" className="btn btn-primary my-2" style={{width:"100%"}} >
-          Submit
+          Create Account
         </Button>
       </Form>
     </FormContainer>

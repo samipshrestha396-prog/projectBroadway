@@ -32,7 +32,7 @@ function ProductPage() {
   }
   return (
     <>
-      <Link to="/" className="btn btn-light mx-3 btn-sm my-3">
+      <Link to="/" className="btn btn-dark mx-3 btn-sm my-3">
         Go Back
       </Link>
       {isLoading ? (
@@ -42,7 +42,7 @@ function ProductPage() {
       ) : (
         <Row className="my-2 mx-3">
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid varient="top" />
+            <Image src={product.image} alt={product.name} fluid varient="top" className="rounded"/>
           </Col>
           <Col md={3}>
             <ListGroup varient="flush">
@@ -88,7 +88,9 @@ function ProductPage() {
               {product.count_in_stock > 0 && (
                 <ListGroup.Item>
                   <Row>
-                    <Col>Qty</Col>
+                    <strong>
+                      <Col>Qty:</Col>
+                    </strong>
                     <Col>
                       <Form.Control
                         as="select"

@@ -8,8 +8,10 @@ import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
+import Message from "../components/Message";
 
 function SigninPage() {
+  const [error, setError] = useState("");
   const { userInfo } = useSelector((state) => state.auth);
   const [Login, { isLoading }] = useLoginMutation();
   const [gmail, setGmail] = useState("");
@@ -32,7 +34,8 @@ function SigninPage() {
       const res = await Login({ gmail, password }).unwrap();
       dispatch(setCredentials(res.user));
     } catch (err) {
-      console.log(err?.data?.message || err?.error);
+      console.log(err?.data?.error || err?.error || err?.data?.error);
+      setError(err?.data?.error || err?.error || err?.data?.error);
     }
   };
 
@@ -59,10 +62,21 @@ function SigninPage() {
           <Button type="submit" variant="success">
             Login
           </Button>
-          <Button as={Link} to="/register" type="submit" variant="danger" size="md" className="mx-2">
+          <Button
+            as={Link}
+            to="/register"
+            type="button"
+            variant="primary"
+            size="md"
+            className="mx-2"
+          >
             Register
           </Button>
         </Form>
+        <Form.Group className="my-2 p-3 text-center">
+          {" "}
+          {error && <Message type="danger">{error}</Message>}
+        </Form.Group>
       </FormContainer>
     </>
   );

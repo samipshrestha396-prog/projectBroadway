@@ -8,12 +8,14 @@ import { saveShippingAddress } from "../slices/cartSlice";
 import { useNavigate } from "react-router";
 
 function ShippingPage() {
-  const { shippingAddress  } = useSelector((state) => state.cart);
+  const { shippingAddress } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
-  const [postalcode, setPostalCode] = useState(shippingAddress.postalcode || "");
+  const [postalcode, setPostalCode] = useState(
+    shippingAddress.postalcode || "",
+  );
   const [country, setCountry] = useState(shippingAddress.country || "");
   const [phone, setPhone] = useState(shippingAddress.phone || "");
   const saveShippingAddressHandler = (e) => {
@@ -21,7 +23,7 @@ function ShippingPage() {
     dispatch(
       saveShippingAddress({ address, city, postalcode, country, phone }),
     );
-    navigate("/payment")
+    navigate("/payment");
   };
 
   return (

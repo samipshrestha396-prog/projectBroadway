@@ -19,12 +19,12 @@ const login =async (req, res)=>{
 const {gmail,password}=req.body;
 const user=await User.findOne({gmail});
 if(!user){
-    return res.send({error:"user not found"})
+    return res.status(404).send({error:"user not found"})
     
 }
 const is_match= await user.compare_password(password);
     if(!is_match){
-        return res.send({error:"incorrect password"});
+        return res.status(401).send({error:"incorrect password"});
     };
     const token= generate_token(user._id,res) 
     res.send({message:"logged in successfully!", token,
