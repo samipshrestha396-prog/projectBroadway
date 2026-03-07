@@ -7,6 +7,8 @@ import ProductPage from "./pages/ProductPage";
 import ShippingPage from "./pages/ShippingPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderPage from "./pages/OrderPage";
+import SignupPage from "./pages/RegisterPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path="shipping" element={<ShippingPage />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

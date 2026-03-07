@@ -23,3 +23,7 @@ rating span {
   height: 250px;
   object-fit: cover;
 }
+.brand-category{
+  font-size: 0.9rem;
+  color:blue;
+}

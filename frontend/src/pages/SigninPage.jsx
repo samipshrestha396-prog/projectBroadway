@@ -7,6 +7,7 @@ import { setCredentials } from "../slices/authSlice";
 import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 function SigninPage() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -58,8 +59,8 @@ function SigninPage() {
           <Button type="submit" variant="success">
             Login
           </Button>
-          <Button type="submit" variant="danger" size="md" className="mx-2">
-            Logout
+          <Button as={Link} to="/register" type="submit" variant="danger" size="md" className="mx-2">
+            Register
           </Button>
         </Form>
       </FormContainer>

@@ -1,4 +1,4 @@
-import { useParams ,useNavigate} from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -24,11 +24,11 @@ function ProductPage() {
   // }, []);
 
   const { data: product, isLoading, error } = useGetProductsByIdQuery(id);
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   function addToCartHandler() {
     dispatch(addToCart({ ...product, qty }));
-    navigate("/cart")
+    navigate("/cart");
   }
   return (
     <>
@@ -36,21 +36,25 @@ function ProductPage() {
         Go Back
       </Link>
       {isLoading ? (
-        <Loader/>
+        <Loader />
       ) : error ? (
-        <Message type="danger" >{error?.data?.message || error?.error}</Message>
+        <Message type="danger">{error?.data?.message || error?.error}</Message>
       ) : (
         <Row className="my-2 mx-3">
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid  varient="top"/>
+            <Image src={product.image} alt={product.name} fluid varient="top" />
           </Col>
           <Col md={3}>
             <ListGroup varient="flush">
               <ListGroup.Item>{product.name}</ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="text-warning fs-3">
                 {" "}
                 $<strong>{product.price}</strong>
+                <p className="brand-category ">
+                  {product.brand},{product.category}
+                </p>
               </ListGroup.Item>
+
               <ListGroup.Item>
                 <Rating value={product.rating} text={product.num_reviews} />
               </ListGroup.Item>
@@ -64,7 +68,7 @@ function ProductPage() {
                   <Col>
                     <strong>Price:</strong>
                   </Col>
-                  <Col>{product.price}</Col>
+                  <Col>${product.price}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
