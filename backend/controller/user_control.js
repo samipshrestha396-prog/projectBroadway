@@ -6,11 +6,11 @@ const register= async(req, res)=>{
     const {name,surename,password,gmail,is_admin}=req.body;
     const user= await User.findOne({gmail});
     if (user){
-        return res.status(404).send({error:"user already exists"});
+        return res.status(404).send({error:"User already exists"});
     }
 
 const registered_user= await User.create( {name,surename,password,gmail,is_admin});
-res.status(201).send({message:"user created successfully!"});
+res.status(201).send({message:"User created successfully!"});
  
 };
 

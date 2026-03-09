@@ -22,7 +22,7 @@ function CheckoutSteps({step1, step2, step3, step4}) {
       </Nav.Item>
       <Nav.Item>
         {step3 ? (
-          <Nav.Link as={Link} to="payment">
+          <Nav.Link as={Link} to="/payment">
             Payment
           </Nav.Link>
         ) : (
@@ -32,7 +32,7 @@ function CheckoutSteps({step1, step2, step3, step4}) {
       </Nav.Item>
       <Nav.Item>
           {step4 ? (
-            <Nav.Link as={Link} to="/placeOrder">
+            <Nav.Link as={Link} to="/placeorder">
               Order
             </Nav.Link>
           ) : (

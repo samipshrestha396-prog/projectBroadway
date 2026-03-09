@@ -19,14 +19,14 @@ function PaymentPage() {
       !shippingAddress.city ||
       !shippingAddress.phone ||
       !shippingAddress.country
-    ) {
+    ) {  
       navigate("/shipping");
     }
   }, [shippingAddress, navigate]);
   const savePaymentMethodHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(payment));
-    navigate("/order");
+    navigate("/placeorder");
   };
 
   return (

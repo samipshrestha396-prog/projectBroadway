@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import Message from "../components/Message";
+import { toast } from "react-toastify";
 
 function SigninPage() {
-  const [error, setError] = useState("");
   const { userInfo } = useSelector((state) => state.auth);
   const [Login, { isLoading }] = useLoginMutation();
   const [gmail, setGmail] = useState("");
@@ -30,12 +30,15 @@ function SigninPage() {
 
   const LoginHandler = async (e) => {
     e.preventDefault();
-    try {
-      const res = await Login({ gmail, password }).unwrap();
-      dispatch(setCredentials(res.user));
-    } catch (err) {
-      console.log(err?.data?.error || err?.error || err?.data?.error);
-      setError(err?.data?.error || err?.error || err?.data?.error);
+    if (!gmail || !password) {
+      return toast.info("Please enter your email and password.");
+    } else {
+      try {
+        const res = await Login({ gmail, password }).unwrap();
+        dispatch(setCredentials(res.user));
+      } catch (err) {
+        toast.error(err?.data?.error || err?.error || err?.data?.error);
+      }
     }
   };
 
@@ -73,10 +76,6 @@ function SigninPage() {
             Register
           </Button>
         </Form>
-        <Form.Group className="my-2 p-3 text-center">
-          {" "}
-          {error && <Message type="danger">{error}</Message>}
-        </Form.Group>
       </FormContainer>
     </>
   );
