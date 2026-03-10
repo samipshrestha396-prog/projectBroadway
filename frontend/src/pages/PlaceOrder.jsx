@@ -8,13 +8,38 @@ import {
   Card,
   Container,
 } from "react-bootstrap";
+import {toast} from "react-toastify";
 import { useSelector } from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Link } from "react-router";
+import { usePlaceOrderMutation } from "../slices/orderApiSlice";
+import { useNavigate } from "react-router";
 
-function PlaceOrderPage() {
+function PlaceOrder() {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
+  const [placeOrder, { isLoading: dataLoading }] = usePlaceOrderMutation();
+  const placeOrderHandler = async () => {
+    try {
+      const res = await placeOrder({
+        order_items: cart.cartItems,
+        item_price: cart.itemPrice,
+        shipping_charge: cart.shipping_charge,
+        tax_price: cart.tax_price,
+        total_price: cart.total_price,
+        payment_method: cart.paymentMethod,
+        shipping_address: cart.shippingAddress,
+        
+      }).unwrap();
+      toast.success(res.message);
+      navigate("/order/"+res.order_id)
+    
+    } catch (err) {
+      toast.error(err?.data?.error || err?.error);
+    }
+  };
+
   return (
     <>
       <Container className="fluid">
@@ -99,11 +124,13 @@ function PlaceOrderPage() {
                 </ListGroup.Item>
               </ListGroup>
             </Card>
-            <Button variant="warning">Check Orders</Button>
+            <Button variant="warning" onClick={placeOrderHandler}>
+              Check Orders
+            </Button>
           </Col>
         </Row>
       </Container>
     </>
   );
 }
-export default PlaceOrderPage;
+export default PlaceOrder;

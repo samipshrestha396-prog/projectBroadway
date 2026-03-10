@@ -13,7 +13,7 @@ function ShippingPage() {
   const navigate = useNavigate();
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
-  const [postalcode, setPostalCode] = useState(
+  const [postal_code, setPostal_Code] = useState(
     shippingAddress.postalcode || "",
   );
   const [country, setCountry] = useState(shippingAddress.country || "");
@@ -21,7 +21,7 @@ function ShippingPage() {
   const saveShippingAddressHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveShippingAddress({ address, city, postalcode, country, phone }),
+      saveShippingAddress({ address, city, postal_code, country, phone }),
     );
     navigate("/payment");
   };
@@ -52,8 +52,8 @@ function ShippingPage() {
 
           <Form.Control
             type="text"
-            value={postalcode}
-            onChange={(e) => setPostalCode(e.target.value)}
+            value={postal_code}
+            onChange={(e) => setPostal_Code(e.target.value)}
           />
         </Form.Group>
         <Form.Group className="my-2" controlId="country">

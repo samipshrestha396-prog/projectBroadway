@@ -34,7 +34,7 @@ const get_my_orders = async( req , res)=>{
 
 const get_my_orders_by_id = async ( req , res)=>{
   const id = req.params.id;
-  const orders = await Order.findById(id);
+  const orders = await Order.findById(id).populate("user","name surename gmail");
   if(!orders) return res.status(404).send({error:"product not found"});
 
   res.status(200).send({message:"orders are",orders})

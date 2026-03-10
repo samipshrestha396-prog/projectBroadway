@@ -22,7 +22,7 @@ const cartSlice = createSlice({
           x._id === exists._id ? item : x,
         );
       } else {
-        state.cartItems.push({ ...item });
+        state.cartItems.push({ ...item ,product:item._id});
       }
 
       cartUpdate(state);
