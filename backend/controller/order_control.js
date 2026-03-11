@@ -26,35 +26,35 @@ const add_order = async (req, res) => {
 
 const get_my_orders = async( req , res)=>{
   const user = req.user._id
-  const orders = await Order.find({user});
-  if(!orders) return res.status(404).send({error:" you have not taken orders"});
-  res.send({message:" your order are...",items: orders})
+  const order = await Order.find({user});
+  if(!order) return res.status(404).send({error:" you have not taken orders"});
+  res.send({message:" your order are...",items: order})
 
 };
 
 const get_my_orders_by_id = async ( req , res)=>{
   const id = req.params.id;
-  const orders = await Order.findById(id).populate("user","name surename gmail");
-  if(!orders) return res.status(404).send({error:"product not found"});
+  const order = await Order.findById(id).populate("user","name surename gmail");
+  if(!order) return res.status(404).send({error:"product not found"});
 
-  res.status(200).send({message:"orders are",orders})
+  res.status(200).send({message:"orders are",order})
 }
 
 const see_orders = async ( req ,res)=>{
-  const orders =  await Order.find()
-  if(!orders) return res.status(404).send({error:" there is no order today!"});
-  res.status(200).send({message:"Today's total order are...",items: orders})
+  const order =  await Order.find()
+  if(!order) return res.status(404).send({error:" there is no order today!"});
+  res.status(200).send({message:"Today's total order are...",items: order})
 
 };
 
 
 const pay_order = async ( req, res)=>{
   const id = req.params.id;
-  const orders = await Order.findById(id);
-  if(!orders) return res.status(404).send({error:" product not found"});
-  orders.is_paid = true;
-  orders.paid_at= new Date();
-  await orders.save();
+  const order = await Order.findById(id);
+  if(!order) return res.status(404).send({error:" product not found"});
+  order.is_paid = true;
+  order.paid_at= new Date();
+  await order.save();
   res.status(200).send({message:"paid successfully!"});
 
   
@@ -63,12 +63,12 @@ const pay_order = async ( req, res)=>{
 const delivered = async (req , res)=>{
   const id = req.params.id;
 
-  const orders = await Order.findById(id);
-  if (!orders) return res.status(404).send({error:" orders not found"});
-  orders.is_delivered = true;
-  orders.delivered_at = new Date();
+  const order = await Order.findById(id);
+  if (!order) return res.status(404).send({error:" orders not found"});
+  order.is_delivered = true;
+  order.delivered_at = new Date();
   
-  await orders.save();
+  await order.save();
   res.status(200).send({message:"delivered successfully"});
 
 };
