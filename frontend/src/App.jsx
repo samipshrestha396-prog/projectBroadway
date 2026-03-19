@@ -10,6 +10,8 @@ import PlaceOrder from "./pages/PlaceOrder";
 import RegisterPage from "./pages/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import OrderPage from "./pages/OrderPage";
+import PrivatePage from "./pages/PrivatePage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -20,12 +22,15 @@ function App() {
           <Route path="" element={<HomePage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="signin" element={<SigninPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="" element={<PrivatePage />}>
+            <Route path="shipping" element={<ShippingPage />} />
+            <Route path="payment" element={<PaymentPage />} />
+            <Route path="placeorder" element={<PlaceOrder />} />
+            <Route path="order/:id" element={<OrderPage />} />
+            <Route path="profile" element={<ProfilePage/>}/>
+          </Route>
 
-          <Route path="shipping" element={<ShippingPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/placeorder" element={<PlaceOrder />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/order/:id" element={<OrderPage />} />
           <Route path="product/:id" element={<ProductPage />} />
         </Route>
       </Routes>

@@ -19,6 +19,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { clearCart } from "../slices/cartSlice";
 
+
 function PlaceOrder() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,10 +36,12 @@ function PlaceOrder() {
         total_price: cart.total_price,
         payment_method: cart.paymentMethod,
         shipping_address: cart.shippingAddress,
-      }).unwrap();
       
+      }).unwrap();
+
       toast.success(res.message);
       dispatch(clearCart());
+      navigate("/")
 
       navigate("/order/" + res.order_id);
     } catch (err) {
@@ -62,7 +65,7 @@ function PlaceOrder() {
                   <h2>Shipping:</h2>
                   <p>
                     <strong>Address:</strong>
-                    {shippingAddress.address},{shippingAddress.city},
+                    {shippingAddress.address},{shippingAddress.city}
                     {shippingAddress.postalcode},{shippingAddress.country},
                     {shippingAddress.phone}
                   </p>
@@ -112,7 +115,7 @@ function PlaceOrder() {
                   <ListGroup.Item>
                     <Row>
                       <Col>Total:</Col>
-                      <Col>${cart.itemPrice.toFixed(2)}</Col>
+                      <Col>${cart.itemPrice}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
@@ -124,19 +127,19 @@ function PlaceOrder() {
                   <ListGroup.Item>
                     <Row>
                       <Col>Tax Price:</Col>
-                      <Col>${cart.tax_price.toFixed(2)}</Col>
+                      <Col>${cart.tax_price}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
                       <Col>Grand Total:</Col>
-                      <Col>${cart.total_price.toFixed(2)}</Col>
+                      <Col>${cart.total_price}</Col>
                     </Row>
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
               <Button variant="warning" onClick={placeOrderHandler}>
-                Check Orders
+                Place order
               </Button>
             </Col>
           </Row>

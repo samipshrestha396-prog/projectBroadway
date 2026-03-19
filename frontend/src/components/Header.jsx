@@ -7,6 +7,7 @@ import { useLogoutMutation } from "../slices/userApiSlice";
 import { useDispatch } from "react-redux";
 import { clearCredentials } from "../slices/authSlice";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 function Header() {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
@@ -45,7 +46,7 @@ function Header() {
               </Nav.Link>
               {userInfo ? (
                 <NavDropdown title={userInfo.name}>
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>

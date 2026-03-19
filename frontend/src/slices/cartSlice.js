@@ -23,6 +23,7 @@ const cartSlice = createSlice({
         );
       } else {
         state.cartItems.push({ ...item ,product:item._id});
+      
       }
 
       cartUpdate(state);

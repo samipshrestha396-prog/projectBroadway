@@ -14,7 +14,7 @@ function ShippingPage() {
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
   const [postal_code, setPostal_Code] = useState(
-    shippingAddress.postalcode || "",
+    shippingAddress.postal_code || "",
   );
   const [country, setCountry] = useState(shippingAddress.country || "");
   const [phone, setPhone] = useState(shippingAddress.phone || "");
