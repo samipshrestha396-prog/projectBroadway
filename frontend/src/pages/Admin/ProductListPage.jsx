@@ -8,6 +8,7 @@ import {
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { toast } from "react-toastify";
+import { Link } from "react-router";
 
 function ProductListPage() {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -16,10 +17,8 @@ function ProductListPage() {
 
   const createProductHandler = async () => {
     try {
-      
-        const res = await createProduct().unwrap();
-        toast.success(res.message);
-      
+      const res = await createProduct().unwrap();
+      toast.success(res.message);
     } catch (err) {
       toast.error(err?.data?.error);
     }
@@ -27,9 +26,10 @@ function ProductListPage() {
 
   const deleteProductHandler = async (productId) => {
     try {
-      if (window.confirm("Are you sure you want to delete?")){
-      const res = await deleteProduct({ productId }).unwrap();
-      toast.success(res.message);}
+      if (window.confirm("Are you sure you want to delete?")) {
+        const res = await deleteProduct({ productId }).unwrap();
+        toast.success(res.message);
+      }
     } catch (err) {
       toast.error(err?.data?.error);
     }
@@ -40,8 +40,8 @@ function ProductListPage() {
         <Col>
           <h3>Products</h3>
         </Col>
-        <Col className="text-end">
-          <Button className="btn-sm fw-bold" onClick={createProductHandler}>
+        <Col className="text-end ">
+          <Button className="btn-sm fw-bold sticky" onClick={createProductHandler}>
             <FaPlus style={{ marginTop: "-3px" }} /> Create Product
           </Button>
         </Col>
@@ -78,7 +78,11 @@ function ProductListPage() {
                   <td>{product.category}</td>
                   <td>${product.price}</td>
                   <td>
-                    <Button className="btn btn-sm btn-success mx-2">
+                    <Button
+                      as={Link}
+                      to={`/admin/products/${product._id}/edit`}
+                      className="btn btn-sm btn-success mx-2"
+                    >
                       <FaEdit />
                     </Button>
                     <Button

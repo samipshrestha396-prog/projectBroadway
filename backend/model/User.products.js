@@ -62,7 +62,7 @@ const product_schema = new mongoose.Schema(
     },
     count_in_stock: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     reviews:[review_schema]
   },
