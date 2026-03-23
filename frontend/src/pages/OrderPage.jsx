@@ -9,19 +9,22 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-import { useGetEsewaPaymentDetailsQuery } from "../slices/orderApiSlice";
+import {
+  useDeliverOrderMutation,
+  useGetEsewaPaymentDetailsQuery,
+} from "../slices/orderApiSlice";
 import { useGetOrderByIdQuery } from "../slices/orderApiSlice";
 import Message from "../components/Message";
-import Loader from "../components/Loader"; 
-
+import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
+import {toast} from "react-toastify";
 function OrderPage() {
   const { id } = useParams();
-  const { data: orderData, isLoading, error } = useGetOrderByIdQuery(id);
+  const { data: orderData, isLoading, error,refetch } = useGetOrderByIdQuery(id);
   const { data: paymentDetails } = useGetEsewaPaymentDetailsQuery(id);
-
+  const [deliverOrder, {}] = useDeliverOrderMutation();
   const order = orderData?.order;
-  
-
+  const { userInfo } = useSelector((state) => state.auth);
 
   const user = order?.user;
   const shipping = order?.shipping_address;
@@ -34,13 +37,23 @@ function OrderPage() {
       input.type = "hidden";
       input.name = key;
       input.setAttribute("value", paymentDetails.details[key]);
-      
+
       form.appendChild(input);
     }
     document.body.appendChild(form);
 
     form.submit();
-    console.log(form)
+    // console.log(form);
+  };
+
+  const handleDeliverOrder = async () => {
+    try {
+      const res = await deliverOrder({ orderId: order._id }).unwrap();
+      refetch()
+      toast.success(res.message);
+    } catch (err) {
+      toast.error(err.data.error);
+    }
   };
 
   return (
@@ -57,7 +70,6 @@ function OrderPage() {
         <Row>
           <Col md={8}>
             <ListGroup variant="flush">
-              
               <ListGroup.Item>
                 <h4>Customer Info</h4>
                 <p>
@@ -153,15 +165,24 @@ function OrderPage() {
                     <Col>Grand Total:</Col>
                     <Col>${order?.total_price}</Col>
                   </Row>
-                  {order?.payment_method !== "cod" && !order.is_paid && (
-                    <Button
-                      className="btn btn-success my-2"
-                      onClick={handleEsewaPayment}
-                    >
-                      Pay via E-sewa
-                    </Button>
-                  )}
+                  {order?.payment_method !== "cod" &&
+                    !order.is_paid &&
+                    !userInfo.is_admin && (
+                      <Button
+                        className="btn btn-success my-2"
+                        onClick={handleEsewaPayment}
+                      >
+                        Pay via E-sewa
+                      </Button>
+                    )}
                 </ListGroup.Item>
+                {userInfo.is_admin && !order.is_delivered && (
+                  <ListGroup.Item>
+                    <Button className="btn btn-success"  onClick={handleDeliverOrder} disabled={!order.is_paid}>
+                      Mark as Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Card>
           </Col>

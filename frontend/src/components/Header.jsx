@@ -19,10 +19,10 @@ function Header() {
     try {
       dispatch(clearCredentials());
       const res = await Logout().unwrap();
-      navigate("/signin")
+      navigate("/signin");
       console.log(res);
     } catch (err) {
-      console.log(err?.data?.message) || err?.error
+      console.log(err?.data?.message) || err?.error;
     }
   };
   return (
@@ -46,7 +46,9 @@ function Header() {
               </Nav.Link>
               {userInfo ? (
                 <NavDropdown title={userInfo.name}>
-                  <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                  </NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
@@ -56,6 +58,16 @@ function Header() {
                   {" "}
                   <FaUser /> Signin
                 </Nav.Link>
+              )}
+              {userInfo && userInfo.is_admin && (
+                <NavDropdown title="Dashboard">
+                  <NavDropdown.Item as={Link} to="/admin/orders">
+                    Check Orders
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/admin/products">
+                   Add Product
+                  </NavDropdown.Item>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>

@@ -12,6 +12,9 @@ import { ToastContainer } from "react-toastify";
 import OrderPage from "./pages/OrderPage";
 import PrivatePage from "./pages/PrivatePage";
 import ProfilePage from "./pages/ProfilePage";
+import AdminPage from "./pages/Admin/AdminPage";
+import OrderListPage from "./pages/Admin/OrderListPage";
+import ProductListPage  from "./pages/Admin/ProductListPage";
 
 function App() {
   return (
@@ -28,7 +31,11 @@ function App() {
             <Route path="payment" element={<PaymentPage />} />
             <Route path="placeorder" element={<PlaceOrder />} />
             <Route path="order/:id" element={<OrderPage />} />
-            <Route path="profile" element={<ProfilePage/>}/>
+            <Route path="profile" element={<ProfilePage />} />
+          </Route>
+          <Route path="admin" element={<AdminPage />}>
+            <Route path="orders" element={<OrderListPage />} />
+            <Route path="products" element={<ProductListPage />} />
           </Route>
 
           <Route path="product/:id" element={<ProductPage />} />

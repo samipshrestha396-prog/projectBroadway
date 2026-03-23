@@ -1,14 +1,13 @@
 import { Spinner } from "react-bootstrap";
 
-function Loader(){
-    return(<>
-    <Spinner animation="border" style={{
-        display:"block",
-        width:"1000x",
-        height:"100px",
-        margin:"auto"
-    }}/>
-    </>)
+function Loader() {
+  return (
+    <>
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </>
+  );
 }
 
 export default Loader;

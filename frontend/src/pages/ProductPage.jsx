@@ -8,13 +8,14 @@ import Rating from "../components/Rating";
 import { Badge, Button } from "react-bootstrap";
 import { useGetProductsByIdQuery } from "../slices/productApiSlice";
 import { addToCart } from "../slices/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 function ProductPage() {
   // const [product, setProduct] = useState({});
   const [qty, setQty] = useState(1);
+  const { userInfo } = useSelector((state) => state.auth);
   const { id } = useParams();
   // useEffect(() => {
   //   axios
@@ -42,7 +43,13 @@ function ProductPage() {
       ) : (
         <Row className="my-2 mx-3">
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid varient="top" className="rounded"/>
+            <Image
+              src={product.image}
+              alt={product.name}
+              fluid
+              varient="top"
+              className="rounded"
+            />
           </Col>
           <Col md={3}>
             <ListGroup varient="flush">
@@ -106,15 +113,17 @@ function ProductPage() {
                 </ListGroup.Item>
               )}
 
-              <ListGroup.Item>
-                <Button
-                  className="btn btn-success text-white"
-                  disabled={!product.count_in_stock}
-                  onClick={addToCartHandler}
-                >
-                  Add to Cart
-                </Button>
-              </ListGroup.Item>
+              {!userInfo.is_admin && (
+                <ListGroup.Item>
+                  <Button
+                    className="btn btn-success text-white"
+                    disabled={!product.count_in_stock}
+                    onClick={addToCartHandler}
+                  >
+                    Add to Cart
+                  </Button>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Col>
         </Row>

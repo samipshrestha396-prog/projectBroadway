@@ -50,10 +50,10 @@ const get_my_orders_by_id = async (req, res) => {
 };
 
 const see_orders = async (req, res) => {
-  const order = await Order.find();
+  const order = await Order.find().populate("user","name surename")
   if (!order)
     return res.status(404).send({ error: " there is no order today!" });
-  res.status(200).send({ message: "Today's total order are...", items: order });
+  res.status(200).send({ message: "Today's total order are...", orders: order });
 };
 
 const pay_order = async (req, res) => {
