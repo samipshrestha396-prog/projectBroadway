@@ -19,7 +19,7 @@ const post_products = async (req, res) => {
       user: req.user._id,
       name: "sample name",
       price: 1,
-      description: "Write something about product",
+      description: "",
       brand: "sample brand",
       category: "sample categgory",
     };
